@@ -1,0 +1,8 @@
+- Boost was used as a network library. Accordingly, it is in dependencies. 
+- The target database is Mysql. 
+- Since the database has a connection phase before the command phase, this is all written to the log (an example of the log is attached). 
+- To write to the log, I use the Worker and Logger(implemented as a singleton) entities. 
+- The entities Acceptor and Connector are used to configure the connection and perform the I/O operations on the sockets. Collects all Proxy class.
+- Sysbench script for testing proxy : 
+sysbench --db-driver=mysql --mysql-host=127.0.0.1 --mysql-port=4500 --mysql-user=sysuser --mysql-password=sysUserRootPass8 --mysql-db=dbtest --range-size=100 --table-size=10000 --tables=4 --threads=10 --events=0 --time=60 --mysql-ssl=off --rand-type=uniform /usr/share/sysbench/oltp_read_only.lua prepare
+- Screenshots of sysbench results is attached.
